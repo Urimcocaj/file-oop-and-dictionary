@@ -1,0 +1,73 @@
+import pickle
+new_file = open("coputers.txt" , "wb")
+tecnology = {"dell" : 700 , "acer" : 500 , "mac_book" : 1000 , "toshiba" : 400}
+pickle.dump(tecnology , new_file)
+new_file.close()
+print("Done")
+def add_laptop():
+    new_file = open("coputers.txt" , "ab")
+    laptop = input("Enter a new laptop:")
+    if laptop in tecnology.keys():
+        print("This laptop already exists")
+    else:
+        price = float(input("Enter the price for this laptop: "))
+        tecnology[laptop] = price
+        pickle.dump(tecnology , new_file)
+        print(tecnology.items())
+def delete_laptop():
+    new_file = open("coputers.txt" , "wb")
+    delete_laptop = input("Which laptop are you going to delete: ")
+    if delete_laptop in tecnology.keys():
+        tecnology.popitem()
+        pickle.dump(tecnology , new_file)
+        print("laptop is deleted")
+    else:
+        print("This laptop is not found in the list")
+        print(tecnology.items())
+def change_price_laptop():
+    new_file = open("coputers.txt" , "wb")
+    change_price_name_laptop = input("Enter the name of the laptop you are going to change price: ")
+    if change_price_name_laptop in tecnology.keys():
+        price = float(input("Enter the new price for the laptop: "))
+        tecnology[change_price_name_laptop] = price
+        print("Price is Updated !")
+        pickle.dump(tecnology , new_file)
+        print(tecnology.items())
+    else:
+        print("laptop not found")
+def main():
+    l = int(input("Enter 1 to show the laptop; 2 to add laptop; 3 to delete laptop; 4 to change price; 0 to exit the program: "))
+    while l != 0:
+        if l == 1:
+            new_file_2 = open("coputers.txt" , "rb")
+            tecnology = pickle.load(new_file_2)
+            print(tecnology)
+            new_file_2.close()
+        elif l == 2:
+            add_laptop()
+        elif l == 3:
+            delete_laptop()
+        elif l == 4:
+            change_price_laptop()
+        elif l == 0:
+            exit()
+        l = int(input("Enter 1 to show the laptop; 2 to add laptop; 3 to delete laptop; 4 to change price; 0 to exit the program: "))
+main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
