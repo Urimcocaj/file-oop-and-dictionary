@@ -1,0 +1,65 @@
+import pickle
+input_file = open("fruit.txt","wb")
+fruits = {"banana" : 50 , "mango" : 100, "ananas" : 200}
+pickle.dump(fruits , input_file)
+def addfruits():
+    input_file = open("fruit.txt" , "ab")
+    fruit = input("Enter a new fruit : ")
+    if fruit in fruits.keys():
+        print(("This fruit already exists"))
+    else:
+        price = float(input("Enter the price for this fruit: "))
+        fruits[fruit] = price
+        pickle.dump(fruits , input_file)
+        print(fruits.items())
+def deleted():
+    input_file = open("fruit.txt" , "wb")
+    del_fruit = input("Which fruit are you going to delete: ")
+    if del_fruit in fruits.keys():
+        fruits.pop(del_fruit)
+        pickle.dump(fruits , input_file)
+        print("fruits is deleted:")
+    else:
+        print("This fruit is not found in the list")
+        print(fruits.items())
+def changefruits():
+    input_file = open("fruit.txt" , "wb")
+    change_name_price_fruits = input("Enter the name of the fruit you are going to change price: ")
+    if change_name_price_fruits in fruits.keys():
+        print("Price is Updated !")
+        pickle.dump(fruits , input_file)
+        print(fruits.items())
+    else:
+        print("Fruit not found")
+def main():
+    i = input("Enter 1 to show the fruits; 2 to add fruits; 3 to delete fruits; 4 to change price; 0 to exit the program: ")
+    while i != 0:
+        if i == 1:
+            input_file_2 = open("fruit.txt" , "rb")
+            fruits = pickle.load(input_file_2)
+            print(fruits)
+        elif i == 2:
+            addfruits()
+        elif i == 3:
+            deleted()
+        elif i == 4:
+            changefruits()
+        elif i == 0:
+            exit()
+
+main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
